@@ -971,7 +971,7 @@ def main():
             for i, uf in enumerate(uploaded_files):
                 with thumb_cols[i % 2]:
                     img = Image.open(uf).convert("RGB")
-                    st.image(img, use_container_width=True)
+                    st.image(img, use_column_width=True)
                     st.markdown(f"""<div style="font-size:10px;color:#555568;text-align:center;
                         margin:-4px 0 8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
                         {uf.name}</div>""", unsafe_allow_html=True)
