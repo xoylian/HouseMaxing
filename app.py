@@ -307,10 +307,8 @@ def main():
     )
 
     if uploaded_files:
-        # Display all uploaded images
-        for i, uf in enumerate(uploaded_files):
-            st.image(uf, caption=f"Φωτογραφία {i + 1}: {uf.name}")
-        # Re-read after display (Streamlit consumes the file buffer)
+        # Show only filenames (no image preview)
+        st.write("**Φωτογραφίες:** " + ", ".join(uf.name for uf in uploaded_files))
         images_data = []
         for uf in uploaded_files:
             uf.seek(0)
@@ -340,28 +338,44 @@ def main():
 
             st.success("Η ανάλυση ολοκληρώθηκε!")
 
-            # Parse severity (English or Greek)
+            # Parse severity: look only at the "Σοβαρότητα:" line (not **Πρόβλημα** etc.)
             severity_lower = "low"
-            for line in assessment.split("\n"):
-                low = line.lower()
-                if "σοβαρότητα" in low or "severity" in low or "**" in line:
+            assessment_lower = assessment.lower()
+            if any(w in assessment_lower for w in ["τέλειο", "τελειο", "όλα καλά", "όχι πρόβλημα", "no issues", "perfect"]):
+                severity_lower = "perfect"
+            else:
+                for line in assessment.split("\n"):
+                    low = line.lower()
+                    if "σοβαρότητα" not in low and "severity" not in low:
+                        continue
                     s = line.split(":")[-1].strip().lower() if ":" in line else low
                     if "κρίσιμ" in s or "critical" in s:
                         severity_lower = "critical"
-                    elif "υψηλή" in s or "high" in s:
+                        break
+                    if "υψηλή" in s or "high" in s:
                         severity_lower = "high"
-                    elif "μέτρι" in s or "medium" in s:
+                        break
+                    if "μέτρι" in s or "medium" in s:
                         severity_lower = "medium"
-                    break
+                        break
+                    if "χαμηλή" in s or "low" in s:
+                        severity_lower = "low"
+                        break
 
-            if severity_lower == "critical":
-                st.error("🔴 **Κρίσιμη σοβαρότητα** — Χρειάζεται άμεση αντιμετώπιση.")
+            # Confidence %: τέλειο=100%, χαμηλή=80%, μέτρια=50%, υψηλή=25%, κρίσιμη=10%
+            conf_map = {"perfect": 100, "low": 80, "medium": 50, "high": 25, "critical": 10}
+            confidence = conf_map.get(severity_lower, 50)
+
+            if severity_lower == "perfect":
+                st.success(f"✅ **Τέλειο** — Εκτίμηση: **{confidence}%**")
+            elif severity_lower == "critical":
+                st.error(f"🔴 **Κρίσιμη σοβαρότητα** — Εκτίμηση: **{confidence}%** — Χρειάζεται άμεση αντιμετώπιση.")
             elif severity_lower == "high":
-                st.error("🔴 **Υψηλή σοβαρότητα** — Αντιμετωπίστε σύντομα.")
+                st.error(f"🔴 **Υψηλή σοβαρότητα** — Εκτίμηση: **{confidence}%** — Αντιμετωπίστε σύντομα.")
             elif severity_lower == "medium":
-                st.warning("🟡 **Μέτρια σοβαρότητα** — Προγραμματίστε την επιδιόρθωση.")
+                st.warning(f"🟡 **Μέτρια σοβαρότητα** — Εκτίμηση: **{confidence}%** — Προγραμματίστε την επιδιόρθωση.")
             else:
-                st.info("🟢 **Χαμηλή σοβαρότητα** — Παρακολουθήστε το πρόβλημα.")
+                st.info(f"🟢 **Χαμηλή σοβαρότητα** — Εκτίμηση: **{confidence}%** — Παρακολουθήστε το πρόβλημα.")
 
             st.markdown("### 📋 Αξιολόγηση")
             st.markdown(assessment)
