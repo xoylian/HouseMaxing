@@ -1,0 +1,459 @@
+[
+    {
+      "id": "101", "category": "Lighting & Photography", "issue": "Severe Backlighting",
+      "description": "The camera is facing a bright window, causing the window to glow white and making the room interior look like a dark silhouette.",
+      "severity": "High", "action": "Tap the darkest part of the screen to adjust exposure, or shoot from an angle where the window is on your left/right, not straight ahead."
+    },
+    {
+      "id": "102", "category": "Lighting & Photography", "issue": "Mixed Color Temperatures",
+      "description": "The room has a mix of blue daylight bulbs and yellow warm bulbs turned on simultaneously, creating muddy colors.",
+      "severity": "Medium", "action": "Standardize all bulbs to warm white (2700K-3000K) for a cohesive, cozy look."
+    },
+    {
+      "id": "103", "category": "Lighting & Photography", "issue": "Flash Glare",
+      "description": "A harsh white reflection from the camera flash is visible in mirrors, windows, or TV screens.",
+      "severity": "High", "action": "Turn off the flash completely. Rely on natural light and all interior room lights."
+    },
+    {
+      "id": "104", "category": "Lighting & Photography", "issue": "Cropped Focal Points",
+      "description": "Important features like the bed or a fireplace are cut off at the edges of the photo.",
+      "severity": "Medium", "action": "Use the wide-angle lens (0.5x) but step back. Ensure the main furniture piece is fully within the frame."
+    },
+    {
+      "id": "105", "category": "Lighting & Photography", "issue": "Dark Corners",
+      "description": "The corners of the room are hidden in deep shadows, making the space look tiny and gloomy.",
+      "severity": "Low", "action": "Place an accent light or floor lamp in the darkest corner to bounce light off the walls and visually expand the room."
+    },
+    {
+      "id": "106", "category": "Lighting & Photography", "issue": "Asymmetrical Bedside Lighting",
+      "description": "Only one bedside lamp is turned on, creating an unbalanced and sloppy look.",
+      "severity": "High", "action": "Turn on BOTH bedside lamps to create perfect symmetry, ensuring they use the exact same wattage and color."
+    },
+    {
+      "id": "107", "category": "Lighting & Photography", "issue": "TV Screen Glow",
+      "description": "The TV is left on, casting a blue, unnatural glow over the room and distracting from the interior design.",
+      "severity": "Medium", "action": "Turn off the TV so it is a clean black rectangle, or display a static, high-resolution artwork image."
+    },
+    {
+      "id": "108", "category": "Lighting & Photography", "issue": "Poor Bathroom Lighting",
+      "description": "The bathroom is lit only by a single dim ceiling light, casting dark shadows over the vanity area.",
+      "severity": "High", "action": "Ensure all vanity and mirror lights are turned on. Bathroom lighting should be bright to feel clean."
+    },
+    {
+      "id": "109", "category": "Lighting & Photography", "issue": "Ceiling Fan Shadows",
+      "description": "A bare bulb on a ceiling fan is casting harsh, rotating, or spider-like shadows across the ceiling.",
+      "severity": "Medium", "action": "Turn off the ceiling fan light. Rely instead on floor lamps and natural light for more flattering illumination."
+    },
+    {
+      "id": "110", "category": "Lighting & Photography", "issue": "Dull Exterior Shot",
+      "description": "The photo of the balcony or exterior is taken in the middle of a cloudy day or in complete darkness.",
+      "severity": "High", "action": "Shoot exterior spaces during 'Twilight' (just after sunset) with all interior lights turned on so they glow warmly through the windows."
+    },
+  
+    {
+      "id": "201", "category": "Furniture Layout", "issue": "Bed Pushed Against Wall",
+      "description": "A double/queen bed has one side pushed flat against a wall, looking like a dorm room.",
+      "severity": "High", "action": "Center the bed on the main wall. Leave at least 2 feet of walking space on both sides with matching nightstands."
+    },
+    {
+      "id": "202", "category": "Furniture Layout", "issue": "Floating / Small Rug",
+      "description": "An area rug is too small and sits in the middle of the floor without touching any furniture legs.",
+      "severity": "Medium", "action": "Use a larger rug. The front legs of the sofa or the bottom two-thirds of the bed must rest on the rug to anchor the space."
+    },
+    {
+      "id": "203", "category": "Furniture Layout", "issue": "Blocked Pathways",
+      "description": "The back of a sofa or a large chair is blocking the natural entrance or walkway of the room.",
+      "severity": "High", "action": "Rearrange furniture to open the flow. Pull items away from the entryway so the room feels welcoming immediately."
+    },
+    {
+      "id": "204", "category": "Furniture Layout", "issue": "Bowling Alley Effect",
+      "description": "All furniture is pushed tightly against the walls, leaving a massive, awkward empty space in the middle.",
+      "severity": "Medium", "action": "Pull the sofa and chairs closer together to create an intimate conversation area. Floating furniture makes rooms feel larger."
+    },
+    {
+      "id": "205", "category": "Furniture Layout", "issue": "Tight Dining Chairs",
+      "description": "Dining chairs are pushed so close to a wall that a guest cannot pull them out to sit.",
+      "severity": "High", "action": "Ensure 36 inches of clearance between the table edge and walls. If too tight, remove a chair or use a smaller round table."
+    },
+    {
+      "id": "206", "category": "Furniture Layout", "issue": "Mismatched Nightstand Scales",
+      "description": "A massive nightstand sits on one side of the bed and a tiny, flimsy table on the other.",
+      "severity": "Low", "action": "Symmetry sells. Ensure both nightstands are roughly the same visual weight and height to frame the bed perfectly."
+    },
+    {
+      "id": "207", "category": "Furniture Layout", "issue": "Coffee Table Too Far",
+      "description": "The coffee table is placed out of reach from the sofa, making it look decorative rather than functional.",
+      "severity": "Low", "action": "Place the coffee table exactly 16 to 18 inches away from the edge of the sofa for perfect ergonomic reach."
+    },
+    {
+      "id": "208", "category": "Furniture Layout", "issue": "Obstructed Windows",
+      "description": "A tall piece of furniture, like a bookshelf or a high headboard, is blocking a window and cutting off natural light.",
+      "severity": "High", "action": "Move tall furniture to solid walls. Never block windows, as natural light is the most valuable asset in a photo."
+    },
+    {
+      "id": "209", "category": "Furniture Layout", "issue": "Too Many Small Pieces",
+      "description": "The room is cluttered with multiple small chairs, tiny tables, and bean bags instead of fewer, substantial pieces.",
+      "severity": "Medium", "action": "Consolidate furniture. Replace three small seating items with one solid armchair or loveseat to reduce visual noise."
+    },
+    {
+      "id": "210", "category": "Furniture Layout", "issue": "Unanchored TV",
+      "description": "A small TV is placed on a massive blank wall with no console table underneath it to ground it.",
+      "severity": "Medium", "action": "Place a media console under the TV that is at least 25% wider than the TV itself to visually anchor the setup."
+    },
+  
+    {
+      "id": "301", "category": "Interior Design", "issue": "Visible Cables",
+      "description": "A tangled mess of black power cords or HDMI cables hangs from the TV or runs across the floor.",
+      "severity": "Medium", "action": "Zip-tie cables together and hide them behind furniture legs, or install a cheap wall cable concealer."
+    },
+    {
+      "id": "302", "category": "Interior Design", "issue": "Personal Clutter",
+      "description": "Family photos, mail, used sponges, or toothbrushes are visible on counters.",
+      "severity": "High", "action": "Depersonalize completely. Remove all personal items to create a clean, hotel-like environment."
+    },
+    {
+      "id": "303", "category": "Interior Design", "issue": "Flat / Messy Bedding",
+      "description": "The bed looks slept in, the duvet is flat, and there are only two sleeping pillows.",
+      "severity": "High", "action": "Iron the duvet. Fold the top back to show crisp sheets, and use at least 4 propped-up sleeping pillows plus 1-2 decorative throw pillows."
+    },
+    {
+      "id": "304", "category": "Interior Design", "issue": "Curtains Hung Too Low",
+      "description": "The curtain rod is resting directly on the top window frame, making the ceiling look low.",
+      "severity": "Medium", "action": "Hang the curtain rod 4-6 inches above the window frame and let the fabric touch the floor to add height to the room."
+    },
+    {
+      "id": "305", "category": "Interior Design", "issue": "Empty / Cold Walls",
+      "description": "Large blank white walls with zero artwork or mirrors make the room feel sterile.",
+      "severity": "Medium", "action": "Hang a large canvas or framed print above the bed or sofa, with the center of the art at eye level."
+    },
+    {
+      "id": "306", "category": "Interior Design", "issue": "Flat Textures",
+      "description": "The room looks one-dimensional because all materials are flat (e.g., plain cotton) with no cozy textures.",
+      "severity": "Low", "action": "Add layered textures. Throw a chunky knit blanket over the bed or sofa, and add a velvet or linen throw pillow."
+    },
+    {
+      "id": "307", "category": "Interior Design", "issue": "Cluttered Surfaces",
+      "description": "Coffee tables or nightstands are covered in too many small decorative items.",
+      "severity": "Medium", "action": "Apply the 'Rule of Three'. Leave a maximum of three curated items (e.g., a plant, a book, a lamp) on any flat surface."
+    },
+    {
+      "id": "308", "category": "Interior Design", "issue": "Bare Windows",
+      "description": "Windows have no blinds, shades, or curtains, making the room feel unfinished and lacking privacy.",
+      "severity": "Medium", "action": "Install simple, floor-length sheer curtains to soften the light and make the room look professionally styled."
+    },
+    {
+      "id": "309", "category": "Interior Design", "issue": "Harsh Overhead Lighting Only",
+      "description": "The room design lacks ambient lighting options, relying solely on a bright ceiling fixture.",
+      "severity": "High", "action": "Add table lamps or a floor lamp. Layered lighting is essential for creating a luxurious, welcoming atmosphere."
+    },
+    {
+      "id": "310", "category": "Interior Design", "issue": "Outdated Hardware",
+      "description": "Kitchen or bathroom cabinets have cheap, old, or mismatched plastic handles.",
+      "severity": "Low", "action": "Swap out old cabinet pulls for modern matte black or brushed brass hardware. It is a cheap fix that elevates the whole room."
+    },
+  
+    {
+      "id": "401", "category": "Exterior & Roof", "issue": "Gutter Pull-Away",
+      "description": "Gutters are sagging, pulling away from the wood fascia, or missing completely.",
+      "severity": "Medium", "action": "Re-secure gutters using heavy-duty hidden hangers with screws. Clean out debris causing excess weight."
+    },
+    {
+      "id": "402", "category": "Exterior & Roof", "issue": "Negative Grading",
+      "description": "The soil or concrete around the house slopes downward toward the foundation, pooling water.",
+      "severity": "High", "action": "Regrade the soil to drop 6 inches over the first 10 feet away from the house to prevent basement flooding."
+    },
+    {
+      "id": "403", "category": "Exterior & Roof", "issue": "Missing/Curling Shingles",
+      "description": "Asphalt roof shingles are missing, cracked, or curling upward at the edges.",
+      "severity": "High", "action": "The roof has reached the end of its lifespan. Hire a roofer to patch missing areas or replace the roof."
+    },
+    {
+      "id": "404", "category": "Exterior & Roof", "issue": "Siding Rot",
+      "description": "Wood or composite siding near the ground is soft, crumbling, or peeling heavily.",
+      "severity": "High", "action": "Replace rotted boards. Ensure there is at least 6 inches of clearance between the bottom of the siding and the soil."
+    },
+    {
+      "id": "405", "category": "Exterior & Roof", "issue": "Rusted Chimney Flashing",
+      "description": "The metal base where the chimney meets the roof is rusted, lifted, or heavily tarred.",
+      "severity": "High", "action": "Have a professional install new custom-bent metal step flashing to prevent water intrusion into the attic."
+    },
+    {
+      "id": "406", "category": "Exterior & Roof", "issue": "Peeling Exterior Paint",
+      "description": "Large sections of paint are bubbling, flaking, or peeling off the exterior siding or trim.",
+      "severity": "Medium", "action": "Scrape away loose paint, apply a high-quality exterior primer to bare wood, and repaint to prevent moisture rot."
+    },
+    {
+      "id": "407", "category": "Exterior & Roof", "issue": "Moss on Roof",
+      "description": "Thick green moss or algae is growing on the roof shingles, especially on shaded sections.",
+      "severity": "Medium", "action": "Apply a zinc or copper-based moss killer. Do not power-wash the roof, as it destroys the shingle granules."
+    },
+    {
+      "id": "408", "category": "Exterior & Roof", "issue": "Crumbly Chimney Mortar",
+      "description": "The mortar joints between the bricks on the chimney are missing, sandy, or crumbling away.",
+      "severity": "High", "action": "Hire a mason to 'tuckpoint' the chimney. Leaving it exposes the structure to water damage and collapse."
+    },
+    {
+      "id": "409", "category": "Exterior & Roof", "issue": "Window Caulking Gaps",
+      "description": "The exterior caulk around window frames is cracked, pulling away, or completely missing.",
+      "severity": "Medium", "action": "Remove the old caulk and apply a fresh bead of exterior-grade polyurethane or silicone caulk to stop drafts and leaks."
+    },
+    {
+      "id": "410", "category": "Exterior & Roof", "issue": "Overhanging Tree Branches",
+      "description": "Large tree branches are resting on the roof or hanging directly over the chimney.",
+      "severity": "Medium", "action": "Trim branches back at least 6 feet from the roof to prevent physical damage during storms and keep pests away."
+    },
+  
+    {
+      "id": "501", "category": "Electrical", "issue": "Scorched Outlets",
+      "description": "Black or brown burn marks are visible on the plastic faceplate of an outlet.",
+      "severity": "Critical", "action": "Turn off the breaker immediately. This is a severe fire hazard indicating arcing. Call an electrician."
+    },
+    {
+      "id": "502", "category": "Electrical", "issue": "Missing GFCI in Wet Areas",
+      "description": "Standard outlets (without test/reset buttons) are located within 6 feet of a sink or bathtub.",
+      "severity": "Medium", "action": "Upgrade to GFCI receptacles to protect against fatal electric shocks near water sources."
+    },
+    {
+      "id": "503", "category": "Electrical", "issue": "Exposed Wire Splices",
+      "description": "Wires joined with plastic nuts are hanging outside of a covered junction box.",
+      "severity": "High", "action": "All wire connections must be enclosed in a secured plastic or metal junction box to contain potential sparks."
+    },
+    {
+      "id": "504", "category": "Electrical", "issue": "Painted Over Outlets",
+      "description": "Outlet covers and the actual plug slots are heavily coated in interior wall paint.",
+      "severity": "Low", "action": "Replace the painted receptacles and covers. Paint in the slots can cause poor connections and overheating."
+    },
+    {
+      "id": "505", "category": "Electrical", "issue": "Extension Cord Overload",
+      "description": "Multiple high-draw appliances are plugged into a single cheap extension cord or power strip.",
+      "severity": "High", "action": "Unplug heavy appliances. Install permanent wall outlets. Extension cords are for temporary use only and can melt."
+    },
+    {
+      "id": "506", "category": "Electrical", "issue": "Two-Prong Outlets",
+      "description": "The home has older two-prong outlets instead of modern three-prong grounded outlets.",
+      "severity": "Medium", "action": "This means the system lacks an equipment ground. Have an electrician install GFCI outlets or rewire the circuits for modern safety."
+    },
+    {
+      "id": "507", "category": "Electrical", "issue": "Double-Tapped Breaker",
+      "description": "Inside the electrical panel, two separate wires are crammed into a single circuit breaker slot.",
+      "severity": "High", "action": "This is a fire hazard due to loose connections. An electrician must add a new breaker or use a pigtail connection if permitted."
+    },
+    {
+      "id": "508", "category": "Electrical", "issue": "Exposed Outdoor Wiring",
+      "description": "Indoor-rated NM (Romex) wiring is running along the outside of the house without a protective conduit.",
+      "severity": "High", "action": "Outdoor wiring must be UF-rated (Underground Feeder) or fully enclosed in weather-proof PVC or metal conduit to prevent UV and physical damage."
+    },
+    {
+      "id": "509", "category": "Electrical", "issue": "Flickering Lights",
+      "description": "Lights flicker or dim noticeably when a major appliance (like a vacuum or AC) turns on.",
+      "severity": "Medium", "action": "This indicates an overloaded circuit or loose neutral connection. Have an electrician evaluate the panel's load capacity."
+    },
+    {
+      "id": "510", "category": "Electrical", "issue": "Warm Switch Plates",
+      "description": "A dimmer switch or standard light switch feels warm or hot to the touch during normal use.",
+      "severity": "High", "action": "A hot switch indicates it is failing or handling too much wattage. Turn it off and replace the switch immediately."
+    },
+    {
+        "id": "601", "category": "Plumbing", "issue": "Toilet Base Leaks",
+        "description": "Brown staining or rotting flooring around the base of the toilet.",
+        "severity": "High", "action": "The wax ring has failed. Remove the toilet, repair rotted subfloor, and install a new extra-thick wax ring."
+      },
+      {
+        "id": "602", "category": "Plumbing", "issue": "Under-Sink Corrosion",
+        "description": "Heavy white or green crusty buildup on the P-trap pipes under a sink.",
+        "severity": "Medium", "action": "This indicates a slow micro-leak. Disassemble the P-trap, replace the rubber slip-joint washers, and hand-tighten."
+      },
+      {
+        "id": "603", "category": "Plumbing", "issue": "Water Heater Rust",
+        "description": "Rust flakes or active water weeping around the bottom seam of a hot water tank.",
+        "severity": "Critical", "action": "The internal tank lining has failed. Replace the water heater immediately before it bursts and floods the room."
+      },
+      {
+        "id": "604", "category": "Plumbing", "issue": "Galvanized Pipe Blistering",
+        "description": "Older silver pipes show rusty, bubbly blisters on the outside.",
+        "severity": "High", "action": "The pipes are rusting from the inside out and are paper-thin. Budget for a home re-pipe with PEX or copper."
+      },
+      {
+        "id": "605", "category": "Plumbing", "issue": "Dripping Faucet",
+        "description": "A faucet has heavy white calcium buildup at the tip and is actively dripping water.",
+        "severity": "Low", "action": "Replace the internal cartridge or O-rings to stop the drip, and soak the aerator in white vinegar to remove minerals."
+      },
+      {
+        "id": "606", "category": "Plumbing", "issue": "Slow Drains / Standing Water",
+        "description": "Water is pooling in the sink or tub and not draining, often with visible hair or debris in the crosshairs of the drain.",
+        "severity": "Medium", "action": "Remove the stopper and clear the blockage using a plastic drain snake. Avoid harsh liquid drain cleaners as they damage older pipes."
+      },
+      {
+        "id": "607", "category": "Plumbing", "issue": "Uninsulated Pipes",
+        "description": "Copper or PVC water supply pipes in an unheated garage, basement, or crawlspace have no foam insulation.",
+        "severity": "Medium", "action": "Wrap exposed pipes with foam pipe insulation tubes and secure with zip ties to prevent freezing and bursting during winter."
+      },
+      {
+        "id": "608", "category": "Plumbing", "issue": "Leaking Hose Bib",
+        "description": "The outdoor water spigot is actively dripping or has a large ice pillar formed under it in winter.",
+        "severity": "Medium", "action": "Replace the internal stem washer. If it's a freeze-proof bib, ensure the hose is disconnected in winter so water can drain out."
+      },
+      {
+        "id": "609", "category": "Plumbing", "issue": "Sump Pump Failure Signs",
+        "description": "The sump pump pit is overflowing with water, or the discharge pipe outside is buried under dirt.",
+        "severity": "High", "action": "Test the sump pump float switch immediately. Ensure the exterior discharge pipe directs water at least 6 feet away from the foundation."
+      },
+      {
+        "id": "610", "category": "Plumbing", "issue": "Water Meter Continuous Spin",
+        "description": "With all faucets off, the small red triangle or dial on the water meter is still spinning.",
+        "severity": "High", "action": "You have a hidden active leak, likely a running toilet or an underground pipe break. Shut off the main water valve and investigate."
+      },
+    
+      {
+        "id": "701", "category": "HVAC", "issue": "Frozen AC Coils",
+        "description": "Thick white ice or frost covers the copper refrigerant lines or indoor coils.",
+        "severity": "High", "action": "Turn the AC off immediately to melt the ice. Check for a completely clogged air filter or call a tech for low refrigerant."
+      },
+      {
+        "id": "702", "category": "HVAC", "issue": "Filthy Air Filter",
+        "description": "The return air filter is completely gray, bent from suction, or covered in a thick layer of dust and hair.",
+        "severity": "Medium", "action": "Replace the filter with a new MERV 8 filter immediately to restore airflow and prevent blower motor burnout."
+      },
+      {
+        "id": "703", "category": "HVAC", "issue": "Rusted Drain Pan",
+        "description": "Standing water or heavy rust in the metal secondary pan under the attic unit.",
+        "severity": "High", "action": "The primary condensate line is clogged. Clear the PVC pipe with a wet vacuum from the outside to prevent ceiling leaks."
+      },
+      {
+        "id": "704", "category": "HVAC", "issue": "Blocked Vents",
+        "description": "Rugs, sofas, or bookcases are placed directly over floor supply registers.",
+        "severity": "Low", "action": "Move furniture to allow at least 12 inches of clearance over vents so the room can heat and cool efficiently."
+      },
+      {
+        "id": "705", "category": "HVAC", "issue": "Crushed Flexible Ductwork",
+        "description": "Foil ducting in the attic or crawlspace is flattened, torn open, or completely disconnected.",
+        "severity": "High", "action": "Replace or reconnect the damaged duct sections using metallic foil tape and mastic sealant to stop pumping air into the attic."
+      },
+      {
+        "id": "706", "category": "HVAC", "issue": "Unlevel Condenser Unit",
+        "description": "The outdoor AC unit is leaning heavily to one side because the plastic or concrete pad has sunk into the dirt.",
+        "severity": "Medium", "action": "Level the pad using gravel or sand underneath. An unlevel unit prevents proper oil lubrication inside the compressor, leading to premature failure."
+      },
+      {
+        "id": "707", "category": "HVAC", "issue": "Dirty Condenser Coils",
+        "description": "The metal fins on the outside of the outdoor AC unit are completely blocked by grass clippings, mud, or dead leaves.",
+        "severity": "Medium", "action": "Turn off power to the unit and gently wash the exterior fins with a garden hose (low pressure) to restore heat transfer efficiency."
+      },
+      {
+        "id": "708", "category": "HVAC", "issue": "Missing Line Insulation",
+        "description": "The black foam insulation on the larger copper pipe running to the outdoor AC unit is missing, cracked, or degraded by the sun.",
+        "severity": "Low", "action": "Wrap the exposed copper pipe with new foam insulation and secure with zip ties. This prevents condensation and efficiency loss."
+      },
+      {
+        "id": "709", "category": "HVAC", "issue": "Soot Around Furnace",
+        "description": "Black powdery soot is visible around the front covers or exhaust vents of a gas furnace.",
+        "severity": "Critical", "action": "Shut off the furnace immediately. This indicates poor combustion and a high risk of Carbon Monoxide poisoning. Call a licensed HVAC technician."
+      },
+      {
+        "id": "710", "category": "HVAC", "issue": "Corroded Flue Pipe",
+        "description": "The metal exhaust pipe above the gas water heater or furnace has heavy rust, holes, or white powdery corrosion at the joints.",
+        "severity": "High", "action": "Replace the rusted flue pipe sections. Any holes can allow lethal Carbon Monoxide gas to vent directly into the living space."
+      },
+    
+      {
+        "id": "801", "category": "Interior", "issue": "Fogged Window Glass",
+        "description": "Condensation or a milky white haze is trapped permanently between two panes of window glass.",
+        "severity": "Low", "action": "The thermal seal has failed. It's cosmetic but lowers energy efficiency. A glazier can replace just the glass sash."
+      },
+      {
+        "id": "802", "category": "Interior", "issue": "Loose Stair Handrail",
+        "description": "The handrail wiggles or the wall brackets are pulling out of the drywall.",
+        "severity": "High", "action": "Major fall hazard. Re-anchor the brackets using 3-inch wood screws directly into the structural wall studs."
+      },
+      {
+        "id": "803", "category": "Interior", "issue": "Ceiling Water Stains",
+        "description": "Yellow or brown circular stains on the drywall ceiling.",
+        "severity": "High", "action": "Find the active leak above (roof or plumbing). Fix the source, then paint the ceiling with a stain-blocking primer."
+      },
+      {
+        "id": "804", "category": "Interior", "issue": "Black Mold in Shower",
+        "description": "Dark spotty growth on silicone caulk or grout lines in the bathroom.",
+        "severity": "Medium", "action": "Scrub with bleach. Ensure the exhaust fan works and runs for 30 minutes after showers to vent humidity."
+      },
+      {
+        "id": "805", "category": "Interior", "issue": "Drywall Nail Pops",
+        "description": "Small circular bumps or cracks where screw heads are pushing through the paint.",
+        "severity": "Low", "action": "Cosmetic issue from wood framing shrinking. Drive a new screw nearby, patch the old hole with spackle, and paint."
+      },
+      {
+        "id": "806", "category": "Interior", "issue": "Sloping or Sagging Floors",
+        "description": "The floor has a noticeable dip, or round objects naturally roll to one side of the room.",
+        "severity": "High", "action": "Could indicate failing floor joists or foundation settling. Inspect the basement/crawlspace directly below this area for structural damage."
+      },
+      {
+        "id": "807", "category": "Interior", "issue": "Door Rubbing Frame",
+        "description": "An interior door hits the top corner of the doorframe and won't close properly, with visible scuff marks on the paint.",
+        "severity": "Medium", "action": "Often caused by foundation settling. Try tightening the top hinge screws first. If it persists, the door may need to be planed or the hinges adjusted."
+      },
+      {
+        "id": "808", "category": "Interior", "issue": "Peeling Bathroom Paint",
+        "description": "Paint on the bathroom ceiling or upper walls is peeling in large strips due to heavy moisture.",
+        "severity": "Low", "action": "Scrape loose paint, apply a mold-resistant primer, and repaint with a semi-gloss finish. Upgrade the bathroom exhaust fan to handle the humidity."
+      },
+      {
+        "id": "809", "category": "Interior", "issue": "Cracked Floor Tiles",
+        "description": "Ceramic floor tiles have long, continuous cracks running through multiple tiles in a straight line.",
+        "severity": "Medium", "action": "This indicates movement or a crack in the concrete slab underneath. The underlying crack must be treated with an isolation membrane before replacing tiles."
+      },
+      {
+        "id": "810", "category": "Interior", "issue": "Gaps in Hardwood Floors",
+        "description": "Wide, visible gaps between solid hardwood floor planks, mostly appearing in the winter.",
+        "severity": "Low", "action": "Wood shrinks in low humidity. Install a whole-house humidifier to keep indoor humidity around 40-50% to prevent the wood from drying out."
+      },
+    
+      {
+        "id": "901", "category": "Structural", "issue": "Horizontal Foundation Cracks",
+        "description": "Horizontal cracks in basement walls, often accompanied by the wall bowing inward.",
+        "severity": "Critical", "action": "Do not DIY. The wall is failing from outside soil pressure. Consult a structural engineer immediately."
+      },
+      {
+        "id": "902", "category": "Structural", "issue": "Sagging Roof Ridge",
+        "description": "A visible dip or 'saddle' shape in the main peak of the roof from the outside.",
+        "severity": "Critical", "action": "Indicates failing rafters or trusses. Requires professional structural reinforcement."
+      },
+      {
+        "id": "903", "category": "Structural", "issue": "Termite Mud Tubes",
+        "description": "Pencil-thin dirt tubes climbing up concrete foundation walls toward wood framing.",
+        "severity": "Critical", "action": "Active subterranean termites. Do not scrape tubes. Call pest control for localized treatment immediately."
+      },
+      {
+        "id": "904", "category": "Structural", "issue": "Vertical Foundation Cracks",
+        "description": "Thin, vertical hairline cracks in poured concrete foundation walls.",
+        "severity": "Low", "action": "Usually normal concrete shrinkage. Monitor for widening over 6 months and seal with polyurethane caulk."
+      },
+      {
+        "id": "905", "category": "Structural", "issue": "Rotted Deck Posts",
+        "description": "Wooden deck support posts are soft, splintering, or sinking directly into the dirt without a concrete footer.",
+        "severity": "High", "action": "Structural failure risk. Replace rotted posts with pressure-treated lumber installed on proper elevated concrete footings."
+      },
+      {
+        "id": "906", "category": "Structural", "issue": "Diagonal Cracks Above Doors",
+        "description": "Large, jagged cracks in the drywall originating from the top corners of doorframes or windows.",
+        "severity": "Medium", "action": "Sign of foundation settlement. If the crack is wider than 1/8 inch or actively growing, have the foundation inspected."
+      },
+      {
+        "id": "907", "category": "Structural", "issue": "Spalling Concrete",
+        "description": "The surface of the exterior concrete foundation or driveway is chipping, flaking off, and exposing the rough aggregate underneath.",
+        "severity": "Medium", "action": "Caused by freeze-thaw cycles and water saturation. Improve drainage away from the concrete and apply a breathable concrete sealer."
+      },
+      {
+        "id": "908", "category": "Structural", "issue": "Sagging Floor Joists",
+        "description": "Looking up from the basement or crawlspace, the wooden floor joists show visible deflection, cracking, or are pulling away from the main beam.",
+        "severity": "Critical", "action": "Major structural hazard. A contractor must 'sister' new joists alongside the failing ones or install adjustable steel lally columns for support."
+      },
+      {
+        "id": "909", "category": "Structural", "issue": "Bowing Retaining Wall",
+        "description": "An exterior brick, stone, or timber retaining wall is leaning heavily outward toward the yard.",
+        "severity": "High", "action": "The wall lacks proper drainage (weep holes) and hydrostatic pressure is destroying it. It needs to be excavated, rebuilt, and backfilled with gravel."
+      },
+      {
+        "id": "910", "category": "Structural", "issue": "Notched or Cut Beams",
+        "description": "A major structural support beam in the basement has large chunks cut out of it by a plumber or electrician to run pipes/wires.",
+        "severity": "Critical", "action": "Cutting load-bearing beams destroys their integrity. A structural engineer must assess the damage and design a steel or wood reinforcement."
+      }
+  ]
