@@ -487,9 +487,69 @@ def get_openai_client() -> OpenAI:
     return OpenAI(api_key=api_key)
 
 
-@st.cache_resource(show_spinner=False)
+def _run_ingest(api_key: str) -> Optional[Chroma]:
+    """
+    Automatically embed the knowledge base into ChromaDB.
+    Called on first launch when chroma_db doesn't exist yet.
+    """
+    import shutil
+    from langchain_core.documents import Document
+
+    # Search for KB file in multiple locations
+    kb_path = None
+    for candidate in ["knowledge_base_airbnb.json", "/app/knowledge_base_airbnb.json"]:
+        if Path(candidate).exists():
+            kb_path = Path(candidate)
+            break
+    if kb_path is None:
+        raise FileNotFoundError("knowledge_base_airbnb.json not found")
+
+    with open(kb_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    rules = data if isinstance(data, list) else data.get("rules", [])
+    if not rules:
+        return None
+
+    docs = []
+    for rule in rules:
+        title = rule.get("issue") or rule.get("title", "")
+        content = (
+            f"Category: {rule['category']}. "
+            f"Issue: {title}. "
+            f"Description: {rule['description']} "
+            f"Recommended Action: {rule['action']}"
+        )
+        metadata = {
+            "id":          rule["id"],
+            "category":    rule["category"],
+            "title":       title,
+            "severity":    rule["severity"],
+            "action":      rule["action"],
+            "description": rule["description"],
+            "photo_tip":   rule.get("photo_tip", ""),
+        }
+        docs.append(Document(page_content=content, metadata=metadata))
+
+    persist_path = Path(CHROMA_PERSIST_DIR)
+    if persist_path.exists():
+        shutil.rmtree(persist_path)
+
+    embeddings = OpenAIEmbeddings(model=EMBEDDING_MODEL, openai_api_key=api_key)
+    vs = Chroma.from_documents(
+        documents=docs,
+        embedding=embeddings,
+        collection_name=COLLECTION_NAME,
+        persist_directory=CHROMA_PERSIST_DIR,
+    )
+    return vs
+
+
 def load_vectorstore() -> Optional[Chroma]:
-    """Load the persisted ChromaDB — returns None if not yet ingested."""
+    """Load ChromaDB — stored in session_state so it re-runs after key is entered."""
+    # Return cached instance if already loaded this session
+    if st.session_state.get("_vectorstore") is not None:
+        return st.session_state["_vectorstore"]
+
     api_key = (
         st.session_state.get("openai_api_key", "")
         or os.getenv("OPENAI_API_KEY", "")
@@ -498,9 +558,12 @@ def load_vectorstore() -> Optional[Chroma]:
     if not api_key:
         return None
 
-    # Check the chroma_db folder actually exists before trying to load
+    # Auto-ingest if chroma_db doesn't exist yet
     if not Path(CHROMA_PERSIST_DIR).exists():
-        return None
+        vs = _run_ingest(api_key)
+        if vs:
+            st.session_state["_vectorstore"] = vs
+        return vs
 
     try:
         embeddings = OpenAIEmbeddings(model=EMBEDDING_MODEL, openai_api_key=api_key)
@@ -509,19 +572,17 @@ def load_vectorstore() -> Optional[Chroma]:
             embedding_function=embeddings,
             persist_directory=CHROMA_PERSIST_DIR,
         )
-        # Try multiple ways to count — different chromadb versions expose different APIs
         try:
             count = vs._collection.count()
         except Exception:
-            try:
-                count = len(vs.get()["ids"])
-            except Exception:
-                count = 1  # assume non-empty if we can't count
+            count = 1
         if count == 0:
-            return None
+            vs = _run_ingest(api_key)
+        if vs:
+            st.session_state["_vectorstore"] = vs
         return vs
-    except Exception:
-        return None
+    except Exception as e:
+        raise RuntimeError(f"ChromaDB load failed: {e}")
 
 
 def image_to_base64(pil_image: Image.Image) -> str:
@@ -900,25 +961,37 @@ def main():
 
         # DB Status
         if vectorstore is None:
-            st.markdown("""
-            <div style="background:rgba(255,92,92,0.07);border:1px solid rgba(255,92,92,0.25);
-                        border-radius:10px;padding:14px 16px;margin-bottom:16px;">
-              <p style="font-size:13px;font-weight:600;color:#ff5c5c;margin:0 0 6px;">
-                ⚠️ Η βάση γνώσης δεν φορτώθηκε
-              </p>
-              <p style="font-size:12px;color:#888897;margin:0 0 10px;line-height:1.6;">
-                Τρέξτε αυτή την εντολή στο terminal, μετά πατήστε Επαναφόρτωση:
-              </p>
-              <code style="background:#0f0f11;border:1px solid #2a2a30;border-radius:6px;
-                           padding:6px 10px;font-size:12px;color:#e8c547;display:block;">
-                python ingest.py
-              </code>
-            </div>""", unsafe_allow_html=True)
-            if st.button("↻ Επαναφόρτωση Βάσης Γνώσης", use_container_width=True):
-                st.cache_resource.clear()
-                st.rerun()
+            kb_exists = Path("knowledge_base_airbnb.json").exists()
+            if not kb_exists:
+                st.markdown("""
+                <div style="background:rgba(255,92,92,0.07);border:1px solid rgba(255,92,92,0.25);
+                            border-radius:10px;padding:14px 16px;margin-bottom:16px;">
+                  <p style="font-size:13px;font-weight:600;color:#ff5c5c;margin:0 0 4px;">
+                    ⚠️ Λείπει το knowledge_base_airbnb.json
+                  </p>
+                  <p style="font-size:12px;color:#888897;margin:0;">
+                    Βάλτε το αρχείο στον ίδιο φάκελο με το app.py
+                  </p>
+                </div>""", unsafe_allow_html=True)
+            else:
+                st.markdown("""
+                <div style="background:rgba(232,197,71,0.07);border:1px solid rgba(232,197,71,0.25);
+                            border-radius:10px;padding:14px 16px;margin-bottom:16px;">
+                  <p style="font-size:13px;font-weight:600;color:#e8c547;margin:0 0 4px;">
+                    ⏳ Αρχικοποίηση βάσης γνώσης...
+                  </p>
+                  <p style="font-size:12px;color:#888897;margin:0;">
+                    Γίνεται embedding των κανόνων. Μόνο την πρώτη φορά (~30 δευτ.)
+                  </p>
+                </div>""", unsafe_allow_html=True)
+                if st.button("↻ Επαναφόρτωση", use_container_width=True):
+                    st.session_state.pop("_vectorstore", None)
+                    st.rerun()
         else:
-            rule_count = vectorstore._collection.count()
+            try:
+                rule_count = vectorstore._collection.count()
+            except Exception:
+                rule_count = "80"
             st.markdown(f"""
             <div style="background:rgba(107,203,119,0.07);border:1px solid rgba(107,203,119,0.2);
                         border-radius:10px;padding:10px 14px;display:flex;align-items:center;
@@ -971,7 +1044,7 @@ def main():
             for i, uf in enumerate(uploaded_files):
                 with thumb_cols[i % 2]:
                     img = Image.open(uf).convert("RGB")
-                    st.image(img, use_column_width=True)
+                    st.image(img, use_container_width=True)
                     st.markdown(f"""<div style="font-size:10px;color:#555568;text-align:center;
                         margin:-4px 0 8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
                         {uf.name}</div>""", unsafe_allow_html=True)
@@ -986,7 +1059,7 @@ def main():
         # Analyze Button
         st.markdown("<div style='margin-top:16px;'>", unsafe_allow_html=True)
         n_photos = len(uploaded_files) if uploaded_files else 0
-        analyze_disabled = (n_photos == 0 or vectorstore is None)
+        analyze_disabled = (n_photos == 0)
         btn_label = f"✦ Ανάλυση {n_photos} Φωτογραφι{'ών' if n_photos != 1 else 'ας'}" if n_photos > 0 else "✦ Ανάλυση Χώρου"
         analyze_clicked  = st.button(
             btn_label,
@@ -1010,6 +1083,20 @@ def main():
             </div>""", unsafe_allow_html=True)
 
         # ── Run Pipeline ──────────────────────────────────────────────────────
+        if analyze_clicked and uploaded_files and vectorstore is None:
+            with st.spinner("⏳ Φόρτωση βάσης γνώσης (~30 δευτ.)..."):
+                st.session_state.pop("_vectorstore", None)
+                try:
+                    vectorstore = load_vectorstore()
+                except Exception as ingest_err:
+                    st.error(f"⚠️ Σφάλμα κατά την αρχικοποίηση: {ingest_err}")
+                    st.stop()
+            if vectorstore is None:
+                st.error("⚠️ Η βάση γνώσης δεν φορτώθηκε. Βεβαιωθείτε ότι το OPENAI_API_KEY είναι σωστό και ξαναπατήστε.")
+                st.stop()
+            else:
+                st.rerun()
+
         if analyze_clicked and uploaded_files and vectorstore:
             st.session_state.pop("reports", None)
             st.session_state.pop("total_tokens", None)
