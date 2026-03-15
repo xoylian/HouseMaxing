@@ -1,0 +1,32 @@
+# Git
+.git
+.gitignore
+
+# Python cache
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+venv/
+env/
+.env/
+
+# ChromaDB — ΔΕΝ συμπεριλαμβάνεται στο image
+# Δημιουργείται αυτόματα κατά την πρώτη εκκίνηση
+chroma_db/
+
+# Streamlit cache
+.streamlit/secrets.toml
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
