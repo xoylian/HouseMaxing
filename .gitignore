@@ -1,0 +1,7 @@
+# Μέσα στο terminal, στον φάκελο HouseMaxing:
+echo "chroma_db/
+.streamlit/secrets.toml
+__pycache__/
+*.pyc
+.DS_Store
+.env" > .gitignore
