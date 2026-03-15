@@ -23,6 +23,28 @@ HouseMaxing/
 
 ## ⚡ Γρήγορη Εκκίνηση
 
+### 🐳 Εκτέλεση με Docker (Προτεινόμενο)
+
+```bash
+# 1. Build το image
+docker build -t housemaxing .
+
+# 2. Εκκίνηση container
+docker run -p 8501:8501 housemaxing
+
+# 3. Άνοιξε τον browser στο:
+# http://localhost:8501
+
+# 4. Εισάγαγε το OpenAI API key σου στη φόρμα που εμφανίζεται
+```
+
+> Το API key εισάγεται μέσα από τη web εφαρμογή — δεν χρειάζεται να το ορίσεις στο terminal.  
+> Αποθηκεύεται μόνο στη συνεδρία του browser και δεν αποθηκεύεται πουθενά.
+
+---
+
+### 💻 Εκτέλεση Χωρίς Docker
+
 ### 1. Εγκατάσταση Dependencies
 
 ```bash
@@ -180,5 +202,7 @@ Pillow>=10.0.0
 | `model_not_found` error | Ο λογαριασμός σου δεν έχει πρόσβαση στο μοντέλο — άλλαξε `VISION_MODEL` στο `app.py` |
 
 ---
+
+*Built for Hackathon — HouseMaxing © 2025*
 
 © 2026 NETTER. All Rights Reserved. Unauthorized copying or use of this code is strictly prohibited.
