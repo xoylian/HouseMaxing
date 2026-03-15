@@ -12,91 +12,84 @@ HouseMaxing χρησιμοποιεί **GPT-4.1 Vision** και μια **RAG pipe
 ```
 HouseMaxing/
 ├── app.py                      # Κύρια Streamlit εφαρμογή
+├── Ingest.py                   # Embedding script (τρέχει αυτόματα)
 ├── knowledge_base_airbnb.json  # 80 κανόνες ειδικών σε 8 κατηγορίες
-├── ingest.py                   # Manual embedding script (προαιρετικό)
 ├── requirements.txt            # Python dependencies
-├── README.md                   # Αυτό το αρχείο
-└── chroma_db/                  # Δημιουργείται αυτόματα κατά την πρώτη εκτέλεση
+├── Dockerfile                  # Docker configuration
+├── entrypoint.sh               # Auto-ingest + Streamlit launcher
+├── .dockerignore               # Docker build exclusions
+├── .gitignore                  # Git exclusions
+└── README.md                   # Αυτό το αρχείο
 ```
 
 ---
 
-## ⚡ Γρήγορη Εκκίνηση
+## ⚡ Εκκίνηση — 2 Εντολές
 
-### 🐳 Εκτέλεση με Docker (Προτεινόμενο)
+### 🐳 Με Docker (Μοναδική επιλογή για αξιολόγηση)
 
 ```bash
-# 1. Build το image
+# 1. Build
 docker build -t housemaxing .
 
-# 2. Εκκίνηση container
-docker run -p 8501:8501 housemaxing
+# 2. Run — αντικατέστησε το sk-... με το πραγματικό σου key
+docker run -p 8501:8501 -e OPENAI_API_KEY=sk-... housemaxing
 
-# 3. Άνοιξε τον browser στο:
+# 3. Άνοιξε τον browser:
 # http://localhost:8501
-
-# 4. Εισάγαγε το OpenAI API key σου στη φόρμα που εμφανίζεται
 ```
 
-> Το API key εισάγεται μέσα από τη web εφαρμογή — δεν χρειάζεται να το ορίσεις στο terminal.  
-> Αποθηκεύεται μόνο στη συνεδρία του browser και δεν αποθηκεύεται πουθενά.
+> ✅ **Δεν χρειάζεται τίποτα άλλο.** Το `entrypoint.sh` τρέχει αυτόματα το embedding (~30 δευτ.) και ξεκινά την εφαρμογή.  
+> Το API key περνάει μέσω του `-e` flag — δεν αποθηκεύεται πουθενά στον κώδικα.
 
 ---
 
-### 💻 Εκτέλεση Χωρίς Docker
-
-### 1. Εγκατάσταση Dependencies
+### 💻 Χωρίς Docker (Εναλλακτικά)
 
 ```bash
+# 1. Εγκατάσταση
 pip install -r requirements.txt
-```
 
-### 2. Εκκίνηση Εφαρμογής
-
-```bash
+# 2. Εκκίνηση
 python3 -m streamlit run app.py
 ```
 
-### 3. Εισαγωγή API Key
-
-Στην πρώτη εκτέλεση, η εφαρμογή ζητά το **OpenAI API Key** σου μέσα από τη web διεπαφή.
-
-> Το κλειδί αποθηκεύεται μόνο στη συνεδρία του browser — δεν αποθηκεύεται πουθενά.
-
-### 4. Αυτόματο Embedding (Μόνο την Πρώτη Φορά)
-
-Αν δεν υπάρχει φάκελος `chroma_db/`, η εφαρμογή εκτελεί αυτόματα το embedding των 80 κανόνων (~30 δευτερόλεπτα). Μετά, πάτα **↻ Επαναφόρτωση**.
+Στη web εφαρμογή:
+1. Εισάγαγε το **OpenAI API key** σου (ξεκινά με `sk-`)
+2. Πάτα **✦ Συνέχεια**
+3. Η εφαρμογή κάνει αυτόματα το embedding (~30 δευτ.)
+4. Ανέβασε φωτογραφία και πάτα **Ανάλυση**
 
 ---
 
-## 🧠 Πώς Λειτουργεί
+## 🧠 Αρχιτεκτονική — Πώς Λειτουργεί
 
 ```
 Φωτογραφία
     │
     ▼
 GPT-4.1 Vision
-Αναλύει την εικόνα και δημιουργεί
-λεπτομερή τεχνική περιγραφή
+Αναλύει την εικόνα σε 9 κατηγορίες
+(φωτισμός, έπιπλα, ασφάλεια κ.λπ.)
     │
     ▼
-ChromaDB (RAG)
-Αντιστοιχεί την περιγραφή με τους
-8 πιο σχετικούς κανόνες ειδικών
+ChromaDB + LangChain (RAG)
+Semantic search στους 80 κανόνες ειδικών
+Επιστρέφει τους 8 πιο σχετικούς
     │
     ▼
-GPT-4.1 Report
-Παράγει δομημένη JSON αναφορά
-με βαθμολογία, ευρήματα, ενέργειες
+GPT-4.1 Report Generator
+Παράγει structured JSON αναφορά
+βασισμένη αποκλειστικά στους retrieved κανόνες
     │
     ▼
 Streamlit UI
-Εμφανίζει το αποτέλεσμα
+Βαθμολογία /10 · Ευρήματα · Συμβουλές
 ```
 
 ---
 
-## 🗂️ Κατηγορίες Κανόνων
+## 🗂️ Κατηγορίες Κανόνων (80 κανόνες)
 
 | # | Κατηγορία | Κανόνες |
 |---|-----------|---------|
@@ -126,25 +119,13 @@ Streamlit UI
 
 Κάθε ανάλυση παράγει:
 
-- **Βαθμολογία** `/10` με οπτικό ring indicator
+- **Βαθμολογία** `/10` με animated ring indicator
 - **Σύνοψη** — 2-3 προτάσεις executive summary
 - **Τι Λειτουργεί Καλά** — θετικά στοιχεία του χώρου
-- **Ευρήματα & Σχέδιο Δράσης** — με severity badges (Critical / High / Medium / Low)
-- **Επαγγελματικές Συμβουλές** — actionable pro tips
-- **Κανόνες που Αντιστοιχήθηκαν** — πλήρης λίστα με IDs
-
----
-
-## 💰 Κόστος Tokens
-
-Η εφαρμογή εμφανίζει αυτόματα τη χρήση tokens και το εκτιμώμενο κόστος μετά από κάθε ανάλυση, βασισμένο στην τιμολόγηση **GPT-4.1**:
-
-| Κατηγορία | Τιμή |
-|-----------|------|
-| Input tokens | $2 / 1M tokens |
-| Output tokens | $8 / 1M tokens |
-
-> Μια τυπική ανάλυση μιας φωτογραφίας κοστίζει περίπου **$0.01–$0.03**.
+- **Ευρήματα & Σχέδιο Δράσης** — severity badges (Critical / High / Medium / Low) με ακριβείς οδηγίες
+- **Επαγγελματικές Συμβουλές** — photo tips και actionable βελτιώσεις
+- **Κανόνες που Αντιστοιχήθηκαν** — πλήρης λίστα με rule IDs
+- **Token Counter** — χρήση tokens και εκτιμώμενο κόστος ανά ανάλυση
 
 ---
 
@@ -155,25 +136,22 @@ Streamlit UI
 | Frontend | Python + Streamlit |
 | Vision & LLM | OpenAI GPT-4.1 |
 | Embeddings | OpenAI `text-embedding-3-small` |
-| Vector DB | ChromaDB (local) |
+| Vector DB | ChromaDB (local persistent) |
 | RAG Framework | LangChain |
-| Knowledge Base | JSON (80 κανόνες) |
+| Knowledge Base | JSON (80 expert rules) |
+| Containerization | Docker (python:3.11-slim) |
 
 ---
 
-## 🔧 Manual Embedding (Προαιρετικό)
+## 💰 Κόστος Tokens
 
-Αν θέλεις να ξαναφτιάξεις τη βάση vectors χειροκίνητα:
+| Κατηγορία | Τιμή |
+|-----------|------|
+| Input tokens (GPT-4.1) | $2 / 1M tokens |
+| Output tokens (GPT-4.1) | $8 / 1M tokens |
+| Embeddings | $0.02 / 1M tokens |
 
-```bash
-# Θέτεις το API key
-export OPENAI_API_KEY="sk-..."
-
-# Τρέχεις το ingest
-python3 ingest.py
-```
-
-Αυτό διαγράφει και ξαναδημιουργεί τον φάκελο `chroma_db/`.
+> Μια τυπική ανάλυση μιας φωτογραφίας κοστίζει περίπου **$0.01–$0.03**.
 
 ---
 
@@ -189,20 +167,9 @@ chromadb>=0.5.0
 Pillow>=10.0.0
 ```
 
-> **Python 3.9+** απαιτείται.
+> **Python 3.11** συνιστάται (χρησιμοποιείται και στο Docker image).
 
 ---
 
-## ⚠️ Γνωστά Θέματα
-
-| Πρόβλημα | Λύση |
-|----------|------|
-| `LibreSSL` warning στο terminal | Αγνόησέ το — δεν επηρεάζει τη λειτουργία |
-| Βάση γνώσης δεν φορτώνει | Πάτα ↻ Επαναφόρτωση μετά το embedding |
-| `model_not_found` error | Ο λογαριασμός σου δεν έχει πρόσβαση στο μοντέλο — άλλαξε `VISION_MODEL` στο `app.py` |
-
----
-
-*Built for Netcompany - Hackathon — HouseMaxing*
-
+*Built for Netcompany Hackathon Thessaloniki 2026 — HouseMaxing*
 *© 2026 NETTER. All Rights Reserved. Unauthorized copying or use of this code is strictly prohibited.*
