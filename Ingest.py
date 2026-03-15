@@ -79,12 +79,19 @@ def ingest(docs: list[Document]) -> Chroma:
     """Embed and persist all documents into ChromaDB."""
     api_key = os.getenv("OPENAI_API_KEY", "")
     if not api_key:
+        # Running interactively — ask for key
         print("\n🔑 Enter your OpenAI API key (starts with sk-):")
-        api_key = input("   API Key: ").strip()
+        try:
+            api_key = input("   API Key: ").strip()
+        except (EOFError, KeyboardInterrupt):
+            print("\n[ERROR] No API key provided.")
+            sys.exit(1)
         if not api_key.startswith("sk-"):
             print("[ERROR] That doesn't look like a valid key. It should start with sk-")
             sys.exit(1)
         print("[✓] API key accepted.\n")
+    else:
+        print(f"[✓] Using OPENAI_API_KEY from environment.")
 
     print(f"[…] Embedding {len(docs)} documents using '{EMBEDDING_MODEL}'…")
     print("     (This calls the OpenAI API once — subsequent app runs load from disk)")
