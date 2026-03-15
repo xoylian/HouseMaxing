@@ -203,6 +203,6 @@ Pillow>=10.0.0
 
 ---
 
-*Built for Netcompany - Hackathon — HouseMaxing © 2025*
+*Built for Netcompany - Hackathon — HouseMaxing*
 
 *© 2026 NETTER. All Rights Reserved. Unauthorized copying or use of this code is strictly prohibited.*
